@@ -1,7 +1,5 @@
 # muton : The Multi-Threaded Object Notation
 
---------------------
-
 Multi-threaded object notation envirionment is not script language but object executable environment.
 This script has some target.
 + Easy write, easy stop.
@@ -12,3 +10,5 @@ This script has some target.
 + Scriptable is not a reason not to write design diagram.
 + Snack is till 300 yen.
 + We don't see banana as snack.
+
+
