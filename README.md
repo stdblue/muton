@@ -1,5 +1,7 @@
 # muton : The Multi-Threaded Object Notation
 
+Under language specification plannning
+
 Multi-threaded object notation envirionment is not script language but object executable environment.
 This script has some target.
 + Easy write, easy stop.
