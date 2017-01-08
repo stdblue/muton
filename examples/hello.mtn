@@ -1,0 +1,8 @@
+/** Sample script Hello world
+ *
+ */
+
+import muton.io.console;
+
+stdout << "Hello, World!" << endl;
+
