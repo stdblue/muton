@@ -61,6 +61,7 @@ while ( i < 10 )
 
 このコードは次のようにブロック化されます。
 ~~~
+// 第1ブロック
 {
     init
     {
@@ -72,23 +73,42 @@ while ( i < 10 )
         i = 0;
         i = i+5;
     }
+
+    finish
+    {
+        [out] mutonse.スクリプトエンジンID.anonymous_script_GUID.i;
+    }
 }
+// 第2ブロック
 {
     init
     {
         [in] mutonse.スクリプトエンジンID.anonymous_script_GUID.i;
     }
 
-    before_loop_condition ( i < 10 )
+    before_loop_condition ( i < 10 );
 
     body
     {
         i = i + 1;
     }
 
-    after_loop_condition (true)
+    after_loop_condition (true);
+
+    finish
+    {
+        [out] mutonse.スクリプトエンジンID.anonymous_script_GUID.i;
+    }
 }
 ~~~
 
 スクリプトは二つの処理機に分割され、実行されます。
-ループ処理はブロック処理の汎用処理に展開しています。
+ループ処理はブロック汎用処理に展開しています。
+上記のコードでは2つのブロックが2つのスレッドに渡され、同時に実行されます。
+ただし、第2ブロックでは変数を入力として参照することをブロック初期化処理時に宣言しています。
+そのため、第1ブロックで変数が生成されるまで、第2ブロックは処理の実行を待機します。
+
+muton のブロック処理はアクセスする変数（オブジェクト）単位でブロック処理を行うため、パフォーマンスの劣化は避けられません。
+
+## 2.3 ブロック汎用処理（Warding）
+
